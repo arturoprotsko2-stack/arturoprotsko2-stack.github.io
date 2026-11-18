@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10243a">
+<meta name="author" content="Процько Артур">
+<title>Artur Protsko | М'язи людини</title>
+<style>
+:root{--bg:#0b1726;--panel:#13283d;--panel2:#1b354d;--text:#f2f7fb;--muted:#b7c8d8;--accent:#65d6b0;--gold:#ffd166}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#0b1726,#142c42);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:900px;margin:auto;padding:20px}
+header{text-align:center;padding:24px 10px 18px}
+.kicker{color:var(--accent);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}
+h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.08;margin:10px 0}
+.sub{color:var(--muted);max-width:620px;margin:0 auto}
+.author{display:inline-block;margin-top:16px;padding:8px 14px;border:1px solid #38546d;border-radius:999px;color:#dce9f3;font-size:.9rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0 22px}
+button{font:inherit;cursor:pointer;border:0}
+.tab,.activity{background:var(--panel2);color:var(--text);padding:11px 15px;border-radius:12px;font-weight:650}
+.tab.active,.activity.active{background:var(--accent);color:#09251f}
+.panel{background:rgba(19,40,61,.94);border:1px solid #29465f;border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 14px 35px #0002}
+h2{margin:0 0 8px;font-size:1.45rem}
+.small{color:var(--muted);font-size:.94rem}
+.explore{display:grid;grid-template-columns:minmax(220px, .9fr) minmax(250px,1.1fr);gap:18px;align-items:center}
+figure{margin:0;background:#0d2032;border-radius:16px;padding:10px}
+svg{width:100%;height:auto;max-height:440px;display:block}
+.part{fill:#55738c;stroke:#b8d0e2;stroke-width:2;cursor:pointer;transition:.2s}
+.part:hover,.part.selected{fill:var(--accent);stroke:#e7fff7;stroke-width:3}
+.bone{fill:#d5e2eb;opacity:.18}
+.info{min-height:190px}
+.info h3{font-size:1.35rem;margin:8px 0;color:var(--gold)}
+.tag{display:inline-block;background:#24465f;color:#cce8f3;border-radius:7px;padding:4px 8px;font-size:.8rem;margin:3px 4px 3px 0}
+.activity-list{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.activity{font-size:.94rem}
+.result{border-left:4px solid var(--accent);padding:12px 14px;background:#0d2032;border-radius:8px;color:#e6f3fa}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+.muscle-card{background:#0d2032;border:1px solid #29465f;border-radius:13px;padding:13px}
+.muscle-card b{color:var(--gold)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:20px}
+@media(max-width:650px){main{padding:13px}.explore{grid-template-columns:1fr}.info{min-height:0}.panel{padding:14px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+ <div class="kicker">Інтерактивний проєкт з біології</div>
+ <h1>М'язи людини:<br>будова та функції</h1>
+ <p class="sub">Досліджуй м'язи, натискай на частини тіла та дивись, які м'язи працюють під час руху.</p>
+ <div class="author">Підготував: учень 8 класу Процько Артур</div>
+</header>
+<nav class="tabs" aria-label="Розділи">
+ <button class="tab active" data-tab="game">Дослідження</button>
+ <button class="tab" data-tab="facts">10 важливих м'язів</button>
+</nav>
+<section id="game" class="panel">
+ <h2>1. Досліди м'язи</h2>
+ <p class="small">Натисни на позначену ділянку тіла, щоб дізнатися назву м'яза та його функцію.</p>
+ <div class="explore">
+  <figure>
+   <svg viewBox="0 0 320 470" role="img" aria-label="Схематичне зображення тіла людини з активними ділянками м'язів">
+    <circle cx="160" cy="48" r="30" class="bone"/>
+    <path class="bone" d="M132 84 Q160 70 188 84 L202 190 Q195 215 190 236 L185 365 L168 365 L160 245 L152 365 L135 365 L130 236 Q125 215 118 190Z"/>
+    <path class="bone" d="M121 98 L88 115 L52 222 L67 229 L111 150 L130 130Z M199 98 L232 115 L268 222 L253 229 L209 150 L190 130Z"/>
+    <path class="bone" d="M135 365 L126 445 L145 445 L160 370 L175 445 L194 445 L185 365Z"/>
+    <ellipse class="part selected" data-id="face" cx="160" cy="48" rx="27" ry="27"/>
+    <path class="part" data-id="shoulder" d="M123 91 Q105 91 96 112 L119 139 Q132 124 139 106Z M197 91 Q215 91 224 112 L201 139 Q188 124 181 106Z"/>
+    <path class="part" data-id="chest" d="M130 112 Q160 98 190 112 L185 171 Q160 184 135 171Z"/>
+    <path class="part" data-id="arm" d="M95 119 L112 137 L80 216 L64 211Z M225 119 L208 137 L240 216 L256 211Z"/>
+    <path class="part" data-id="abs" d="M137 177 L183 177 L179 235 L141 235Z"/>
+    <path class="part" data-id="thigh" d="M133 242 L158 242 L153 350 L126 350Z M162 242 L187 242 L194 350 L167 350Z"/>
+    <path class="part" data-id="calf" d="M127 357 L151 357 L145 432 L124 432Z M169 357 L193 357 L196 432 L175 432Z"/>
+    <text x="160" y="465" text-anchor="middle" fill="#b7c8d8" font-size="10">СХЕМА ТІЛА</text>
+   </svg>
+  </figure>
+  <div class="info">
+   <span class="tag" id="location">Голова</span>
+   <h3 id="muscleName">Мімічні м'язи</h3>
+   <p id="muscleDesc">Допомагають рухати шкіру обличчя, усміхатися, жмуритися та показувати емоції.</p>
+   <p class="small" id="muscleExample">Приклад: коли ми усміхаємося.</p>
+  </div>
+ </div>
+ <h2 style="margin-top:22px">2. Подивись, які м'язи працюють</h2>
+ <p class="small">Обери дію — і побачиш, які групи м'язів допомагають її виконати.</p>
+ <div class="activity-list">
+  <button class="activity active" data-action="walk">Ходьба</button>
+  <button class="activity" data-action="smile">Усмішка</button>
+  <button class="activity" data-action="lift">Підняти руку</button>
+  <button class="activity" data-action="squat">Присідання</button>
+ </div>
+ <div class="result" id="actionResult">Під час ходьби працюють м'язи стегон, литок і сідниць. Вони рухають ноги та допомагають утримувати рівновагу.</div>
+</section>
+<section id="facts" class="panel" hidden>
+ <h2>10 важливих м'язів та їхні функції</h2>
+ <p class="small">Коротко про те, що роблять різні м'язи нашого тіла.</p>
+ <div class="cards">
+  <div class="muscle-card"><b>1. Біцепс</b><br>Згинає руку в лікті.</div>
+  <div class="muscle-card"><b>2. Трицепс</b><br>Розгинає руку в лікті.</div>
+  <div class="muscle-card"><b>3. Дельтоподібний</b><br>Допомагає піднімати руку.</div>
+  <div class="muscle-card"><b>4. Великий грудний</b><br>Допомагає рухати рукою вперед і до тулуба.</div>
+  <div class="muscle-card"><b>5. Прямий м'яз живота</b><br>Згинає тулуб уперед.</div>
+  <div class="muscle-card"><b>6. Трапецієподібний</b><br>Рухає лопатки та допомагає рухати шиєю.</div>
+  <div class="muscle-card"><b>7. Найширший м'яз спини</b><br>Тягне руку назад і вниз.</div>
+  <div class="muscle-card"><b>8. Великий сідничний</b><br>Допомагає випрямляти тулуб і стегно.</div>
+  <div class="muscle-card"><b>9. Чотириголовий м'яз стегна</b><br>Розгинає ногу в коліні.</div>
+  <div class="muscle-card"><b>10. Литковий</b><br>Допомагає ставати навшпиньки та відштовхуватися під час ходьби.</div>
+ </div>
+</section>
+<footer>Біологія · 8 клас · Досліджуй, як працює твоє тіло!</footer>
+</main>
+<script>
+const data={
+ face:{loc:'Обличчя',name:"Мімічні м'язи",desc:"Допомагають рухати шкіру обличчя, усміхатися, жмуритися та показувати емоції.",ex:"Приклад: коли ми усміхаємося."},
+ shoulder:{loc:'Плечі',name:'Дельтоподібний м’яз',desc:'Підіймає руку вбік і допомагає рухати нею в різних напрямках.',ex:'Приклад: коли піднімаємо руку, щоб привітатися.'},
+ chest:{loc:'Грудна клітка',name:'Великий грудний м’яз',desc:'Допомагає рухати рукою вперед і наближати її до тулуба.',ex:'Приклад: коли штовхаємо двері.'},
+ arm:{loc:'Руки',name:'Біцепс і трицепс',desc:'Біцепс згинає руку в лікті, а трицепс — розгинає її.',ex:'Приклад: коли згинаємо та випрямляємо руку.'},
+ abs:{loc:'Живіт',name:"М'язи живота",desc:'Допомагають згинати й повертати тулуб, а також підтримують внутрішні органи.',ex:'Приклад: коли нахиляємося вперед.'},
+ thigh:{loc:'Стегна',name:'М’язи стегна',desc:'Допомагають згинати й розгинати ноги, ходити, бігати та присідати.',ex:'Приклад: коли встаємо зі стільця.'},
+ calf:{loc:'Гомілки',name:'Литкові м’язи',desc:'Допомагають піднімати п’яти та відштовхуватися стопою від землі.',ex:'Приклад: коли стаємо навшпиньки.'}
+};
+document.querySelectorAll('.part').forEach(el=>el.addEventListener('click',()=>{
+ document.querySelectorAll('.part').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');
+ const d=data[el.dataset.id];document.getElementById('location').textContent=d.loc;document.getElementById('muscleName').textContent=d.name;document.getElementById('muscleDesc').textContent=d.desc;document.getElementById('muscleExample').textContent=d.ex;
+}));
+const actions={
+ walk:'Під час ходьби працюють м’язи стегон, литок і сідниць. Вони рухають ноги та допомагають утримувати рівновагу.',
+ smile:'Під час усмішки працюють мімічні м’язи обличчя. Вони підіймають кутики губ і змінюють вираз обличчя.',
+ lift:'Коли піднімаємо руку, працюють дельтоподібний м’яз плеча та м’язи, які стабілізують лопатку.',
+ squat:'Під час присідання активно працюють чотириголові м’язи стегон і сідничні м’язи. Вони допомагають зігнути ноги та підняти тіло назад.'
+};
+document.querySelectorAll('.activity').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.activity').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('actionResult').textContent=actions[b.dataset.action];
+}));
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ document.getElementById('game').hidden=b.dataset.tab!=='game';document.getElementById('facts').hidden=b.dataset.tab!=='facts';
+}));
+</script>
+</body>
+</html>
